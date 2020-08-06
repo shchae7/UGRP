@@ -326,7 +326,7 @@ $ git submodule update
 $ wget https://data.keithito.com/data/speech/LJSpeech-1.1.tar.bz2
 $ tar -xf LJSpeech-1.1.tar.bz2
 $ rm LJSpeech-1.1.tar.bz2
-$ set -i -- 's,DUMMY,LJSpeech-1.1/wavs,g' filelists/*.txt
+$ sed -i -- 's,DUMMY,LJSpeech-1.1/wavs,g' filelists/*.txt
 ```
 
 다음으로, tacotron2의 hparams.py의 디렉토리를 절대 경로로 변경해주어야 한다. (두 개 변경해주면 된다.)
