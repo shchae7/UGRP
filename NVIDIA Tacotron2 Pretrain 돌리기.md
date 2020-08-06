@@ -8,7 +8,7 @@
 $ conda
 ```
 
-를 해 보고, conda not found가 뜬다면 conda가 제대로 설치되거나 세팅되지 않을 것!
+를 해 보고, conda not found가 뜬다면 conda가 제대로 설치되거나 세팅되지 않은 것!
 
 ### 1.1.2. 새 Conda 가상환경 만들고 conda library 설치하기
 
@@ -18,7 +18,8 @@ $ conda activate te3
 $ conda install tensorflow-gpu==1.15
 ```
 
- 첫 줄의 te3 대신에는 자기가 넣고 싶은 environment의 이름을 넣자. 텐서플로우의 contrib attribute를 사용하기 위해 텐플 1.15를 설치한다.
+ 첫 줄의 te3 대신에는 자기가 넣고 싶은 environment의 이름을 넣자. 
+ 텐서플로우의 contrib attribute를 사용하기 위해 텐플 1.15를 설치한다.
 
 ## 2.1. pytorch 설치하기
 
@@ -29,7 +30,8 @@ $ conda install -c pytorch magma-cuda100
 $ conda install ninja pyyaml cmake mkl-include typing-extensions future
 ```
 
-https://github.com/pytorch/pytorch#installation를 참고하면 어떻게 pytorch를 설치하는지 나와있다. 최신 pytorch는 python 버전의 영향을 받지 않으므로 안ㅅ미하고 깔면 된다.
+https://github.com/pytorch/pytorch#installation를 참고하면 어떻게 pytorch를 설치하는지 나와있다. 
+최신 pytorch는 python 버전의 영향을 받지 않으므로 안심하고 깔면 된다.
 
 ### 2.2. pytorch 설치하기
 
