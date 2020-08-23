@@ -1,2 +1,0 @@
-User inputted text from APP! Complete Cycle test
-Inference Done
