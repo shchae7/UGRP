@@ -4,9 +4,12 @@ from watchdog.events import FileSystemEventHandler
 
 import os
 
-WATCH_DIR = '/Users/seunghyunchae/UGRP/sync_system/computer/upload'
-SOURCE = 'shchae7@141.223.181.14:/home/shchae7/UGRP/sync_system/server/user_voice'
-DEST = '/Users/seunghyunchae/UGRP/sync_system/computer/download'
+USERID = 'shchae7'
+
+HOME_DIR = os.getcwd()
+WATCH_DIR = HOME_DIR + '/upload'
+SOURCE = USERID + '@141.223.181.14:/home/' + USERID + '/UGRP/sync_system/server/user_voice'
+DEST = HOME_DIR + '/download'
 
 class Watcher:
     def __init__(self):

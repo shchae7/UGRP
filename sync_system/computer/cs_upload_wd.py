@@ -4,8 +4,10 @@ from watchdog.events import FileSystemEventHandler
 
 import os
 
-SOURCE = '/Users/seunghyunchae/UGRP/sync_system/computer/upload'
-DEST = 'shchae7@141.223.181.14:/home/shchae7/UGRP/sync_system/server/user_text' 
+USERID = 'shchae7'
+
+SOURCE = os.getcwd() + '/upload'
+DEST = USERID + '@141.223.181.14:/home/' + USERID + '/UGRP/sync_system/server/user_text'
 
 class Watcher:
     def __init__(self):
@@ -37,4 +39,4 @@ class Handler(FileSystemEventHandler):
 
 if __name__ == '__main__':
     w = Watcher()
-    w.run()	
+    w.run()
