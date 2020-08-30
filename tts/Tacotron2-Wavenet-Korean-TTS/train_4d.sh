@@ -2,8 +2,8 @@
 
 #SBATCH -J KTacoTr
 #SBATCH -o KTacoTr.%j.out
-#SBATCH -p gpu-2080ti-8
-#SBATCH -t 36:00:00
+#SBATCH -p gpu-all
+#SBATCH -t 4-00:00:00
 #SBATCH --gres=gpu:2
 
 echo "Start Training Korean Tacotron2"
