@@ -1,0 +1,28 @@
+Start Synthesizing Wav File
+SLURM_SUBMIT_DIR = /home/lapis/UGRP/tts/Tacotron2-Wavenet-Korean-TTS
+CUDA_HOME = /opt/ohpc/pub/apps/cuda-10.0
+CUDA_VISIBLE_DEVICES = 4,5
+CUDA_VERSION=10.0
+0: n16
+0: /home/lapis/UGRP/tts/Tacotron2-Wavenet-Korean-TTS
+0: Sat Sep 12 15:43:01 KST 2020
+WARNING:tensorflow:From /home/lapis/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/wavenet/ops.py:51: The name tf.layers.Conv2D is deprecated. Please use tf.compat.v1.layers.Conv2D instead.
+
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+usage: generate.py [-h] [--temperature TEMPERATURE] [--logdir LOGDIR]
+                   [--wav_out_path WAV_OUT_PATH] [--batch_size BATCH_SIZE]
+                   [--wav_seed WAV_SEED] [--mel MEL]
+                   [--gc_cardinality GC_CARDINALITY] [--gc_id GC_ID]
+                   checkpoint_dir
+generate.py: error: the following arguments are required: checkpoint_dir
+Sat Sep 12 15:43:19 KST 2020
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+             29507 gpu-2080t KTacoSyn    lapis  R       0:19      1 n16
+##### END #####

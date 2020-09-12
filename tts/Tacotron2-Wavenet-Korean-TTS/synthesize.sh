@@ -16,14 +16,14 @@ srun -l /bin/hostname
 srun -l /bin/pwd
 srun -l /bin/date
 
-conda init bash
-conda activate tf1-gpu-py36
+#conda init bash
+#conda activate tf1-gpu-py36
 
 python synthesizer.py --load_path logs_tacotron2/train_sample --num_speakers 1 --speaker_id 0 --text "안녕하세요 채승현입니다"
 
 date
 
-conda deactivate
+#conda deactivate
 
 squeue --job $SLURM_JOBID
 

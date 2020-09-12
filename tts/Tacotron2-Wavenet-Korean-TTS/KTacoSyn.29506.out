@@ -1,0 +1,18 @@
+Start Synthesizing Wav File
+SLURM_SUBMIT_DIR = /home/lapis/UGRP/tts/Tacotron2-Wavenet-Korean-TTS
+CUDA_HOME = /opt/ohpc/pub/apps/cuda-10.0
+CUDA_VISIBLE_DEVICES = 0,2
+CUDA_VERSION=10.0
+0: n8
+0: /home/lapis/UGRP/tts/Tacotron2-Wavenet-Korean-TTS
+0: Sat Sep 12 15:23:53 KST 2020
+Traceback (most recent call last):
+  File "synthesizer.py", line 27, in <module>
+    from hparams import hparams
+  File "/home/lapis/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/hparams.py", line 6, in <module>
+    hparams = tf.contrib.training.HParams(
+AttributeError: module 'tensorflow' has no attribute 'contrib'
+Sat Sep 12 15:24:58 KST 2020
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+             29506   gpu-all KTacoSyn    lapis  R       1:05      1 n8
+##### END #####

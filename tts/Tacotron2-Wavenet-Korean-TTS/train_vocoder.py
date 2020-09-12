@@ -125,12 +125,13 @@ def main():
     
     #DATA_DIRECTORY =  'D:\\hccho\\Tacotron-Wavenet-Vocoder-hccho\\data\\moon,D:\\hccho\\Tacotron-Wavenet-Vocoder-hccho\\data\\son'
     #DATA_DIRECTORY =  'D:\\hccho\\Tacotron-Wavenet-Vocoder-hccho\\data\\moon'
-    DATA_DIRECTORY = '/home/shchae7/Tacotron2-Wavenet-Korean-TTS/data/son'
+    DATA_DIRECTORY = '/home/lapis/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/data/son'
 
     parser.add_argument('--data_dir', type=str, default=DATA_DIRECTORY, help='The directory containing the VCTK corpus.')
 
 
-    LOGDIR = 'logs_wavenet'
+    #LOGDIR = '/home/lapis/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/logdir-wavenet'
+    LOGDIR = None
     #LOGDIR = './/logdir-wavenet//train//2019-03-27T20-27-18'
 
     parser.add_argument('--logdir', type=str, default=LOGDIR,help='Directory in which to store the logging information for TensorBoard. If the model already exists, it will restore the state and will continue training. Cannot use with --logdir_root and --restore_from.')
