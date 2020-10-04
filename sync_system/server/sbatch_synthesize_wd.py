@@ -36,10 +36,7 @@ class Handler(FileSystemEventHandler):
     def on_any_event(event):
         if event.event_type == 'created':
             print("New file %s uploaded to SOURCE from COMPUTER!!!" % event.src_path)
-            if len(os.listdir(SOURCE)) <= 10:  # rsync_test starts from 0
-                source = event.src_path[SOURCE_LENGTH:65]
-            else:
-                source = event.src_path[SOURCE_LENGTH:66]
+            source = event.src_path[SOURCE_LENGTH:74]
 
             src = open('./user_text/' + source, "r")
             line = src.readline().rstrip()
