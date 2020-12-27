@@ -39,26 +39,24 @@ class AudioAugmentation:
             data = np.pad(data, (0, max(0, input_length - len(data))), "constant")
         return data
 
-# Create a new instance from AudioAugmentation class
-aa = AudioAugmentation()
+def run_augmentation(source):
+    aa = Audioaugmentation()
 
-# Read and show cat sound
-data = aa.read_audio_file("data/cat.wav")
-aa.plot_time_series(data)
+    data = aa.read_audio_file("data/" + source)
+    aa.plot_time_series(data)
+    # Adding noise to sound
+    data_noise = aa.add_noise(data)
+    aa.plot_time_series(data_noise)
 
-# Adding noise to sound
-data_noise = aa.add_noise(data)
-aa.plot_time_series(data_noise)
+    # Shifting the sound
+    data_roll = aa.shift(data)
+    aa.plot_time_series(data_roll)
 
-# Shifting the sound
-data_roll = aa.shift(data)
-aa.plot_time_series(data_roll)
+    # Stretching the sound
+    data_stretch = aa.stretch(data, 0.8)
+    aa.plot_time_series(data_stretch)
 
-# Stretching the sound
-data_stretch = aa.stretch(data, 0.8)
-aa.plot_time_series(data_stretch)
-
-# Write generated cat sounds
-aa.write_audio_file('output/generated_cat1.wav', data_noise)
-aa.write_audio_file('output/generated_cat2.wav', data_roll)
-aa.write_audio_file('output/generated_cat3.wav', data_stretch)
+    # Write generated cat sounds
+    aa.write_audio_file("output/" + source + "_generated1.wav", data_noise)
+    aa.write_audio_file("output/" + source + "_generated2.wav", data_roll)
+    aa.write_audio_file("output/" + source + "_generated3.wav", data_stretch)
