@@ -1,2 +1,0 @@
-model.ckpt-490000.data-00000-of-00001 filter=lfs diff=lfs merge=lfs -text
-model.ckpt-492000.data-00000-of-00001 filter=lfs diff=lfs merge=lfs -text
