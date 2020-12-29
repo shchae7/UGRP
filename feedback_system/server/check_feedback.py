@@ -21,6 +21,6 @@ total_score = sum(scores)
 if total_score >= 9:
     #print(total_score, "this is successful case")
     new_file = open(TARGET_DIR + sys.argv[1][:-4] + str(sys.argv[2]) + '.txt', 'w')
-    new_file.write(str(total_score))
+    new_file.write(str(total_score) + '\n')
     new_file.write(sys.argv[1])
     new_file.close()
