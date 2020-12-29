@@ -40,6 +40,7 @@ class Handler(FileSystemEventHandler):
             print("New file %s uploaded to SOURCE from COMPUTER!!!" % event.src_path)
             source = event.src_path[SOURCE_LENGTH:SOURCE_LENGTH+19]
             print(source)
+            time.sleep(1)
 
             src = open(SOURCE + source, "r")
             line = src.readline().rstrip()
