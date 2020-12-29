@@ -25,7 +25,7 @@ conda activate tf1-gpu-py36 python=3.6
 필요한 dependency 설치
 
 ```
-pip install tensorflow-gpu==1.12.0 --user
+pip install tensorflow-gpu==1.15.0 --user
 
 pip install tqdm
 
@@ -36,6 +36,8 @@ pip install unidecode
 pip install inflect
 
 pip install matplotlib
+
+pip install jamo
 ```
 
 나중에 필요하면 requirements.txt 만들 예정
