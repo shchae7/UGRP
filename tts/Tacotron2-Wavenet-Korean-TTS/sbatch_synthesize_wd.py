@@ -2,13 +2,15 @@ import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import os
+import shutil
 
 import datetime
 
 USERID = 'shchae7'
-SOURCE = '/home/' + USERID + '/UGRP/sync_system/server/user_text'
-SOURCE_LENGTH = len(SOURCE) + 2  # 1 when testing using mv command
-DEST = '/home/' + USERID + '/UGRP/sync_system/server/user_voice/'
+SOURCE = '/home/' + USERID + '/UGRP/sync_system/server/user_text/'
+SOURCE_LENGTH = len(SOURCE) + 1  # 1 when testing using mv command
+TEMP_DEST = '/home/' + USERID + '/UGRP/sync_system/server/raw_result/'
+REAL_DEST = '/home/' + USERID + '/UGRP/sync_system/server/user_voice/'
 FILE_NUM = 0 # Keep track of number of files in user_text dir --> for string indexing
 
 
@@ -36,9 +38,10 @@ class Handler(FileSystemEventHandler):
     def on_any_event(event):
         if event.event_type == 'created':
             print("New file %s uploaded to SOURCE from COMPUTER!!!" % event.src_path)
-            source = event.src_path[SOURCE_LENGTH:74]
+            source = event.src_path[SOURCE_LENGTH:SOURCE_LENGTH+19]
+            print(source)
 
-            src = open('./user_text/' + source, "r")
+            src = open(SOURCE + source, "r")
             line = src.readline().rstrip()
             src.close()
 
@@ -49,9 +52,9 @@ class Handler(FileSystemEventHandler):
             sh.write("#!/bin/sh\n\n")
 
             sh.write("#SBATCH -J KTacoSyn\n")
-            sh.write("#SBATCH -o out/KTacoSyn.%j.out\n")
-            sh.write("#SBATCH -p gpu-2080ti-8\n")
-            sh.write("#SBATCH -t 2:00:00\n")
+            sh.write("#SBATCH -o ./out_files/KTacoSyn.%j.out\n")
+            sh.write("#SBATCH -p titanxp\n")
+            sh.write("#SBATCH -t 00:10:00\n")
             sh.write("#SBATCH --gres=gpu:2\n\n")
 
             sh.write('echo "Start Syntehsizing Wav File"\n')
@@ -67,7 +70,7 @@ class Handler(FileSystemEventHandler):
             sh.write('conda init bash\n')
             sh.write('activate tf1-gpu-py36\n\n')
 
-            sh.write('python3 synthesizer.py --load_path logs_tacotron2/son_2020-08-20_01-22-11 --num_speakers 1 --speaker_id 0 --text ' + '"' + line + '"\n\n')
+            sh.write('python3 synthesizer.py --load_path logs_tacotron2/train_sample --num_speakers 1 --speaker_id 0 --text ' + '"' + line + '"\n\n')
 
             sh.write('date\n\n')
 
@@ -79,8 +82,13 @@ class Handler(FileSystemEventHandler):
 
             print(TACOTRON_HOME + 'inference_' + formatted_time + '.sh written')
 
-            os.system('sbatch ' + TACOTRON_HOME + 'inference_' + formatted_time + '.sh')
+            os.system('sbatch ' + 'inference_' + formatted_time + '.sh')
+            time.sleep(50)
 
+            for filename in os.listdir(TEMP_DEST):
+                print(filename)
+                shutil.move(TEMP_DEST + filename, REAL_DEST + source[:-4] + filename[-4:])
+                
 
 if __name__ == '__main__':
     w = Watcher()

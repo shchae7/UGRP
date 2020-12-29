@@ -327,7 +327,7 @@ def short_concat(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--load_path', required=True)
-    parser.add_argument('--sample_path', default="logdir-tacotron2/generate")
+    parser.add_argument('--sample_path', default="../../sync_system/server/raw_result/")
     parser.add_argument('--text', required=True)
     parser.add_argument('--num_speakers', default=1, type=int)
     parser.add_argument('--speaker_id', default=0, type=int)
@@ -343,19 +343,3 @@ if __name__ == "__main__":
 
     audio = synthesizer.synthesize(texts=[config.text],base_path=config.sample_path,speaker_ids=[config.speaker_id],
                                    attention_trim=True,base_alignment_path=config.base_alignment_path,isKorean=config.is_korean)[0]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
