@@ -2,9 +2,9 @@
 
 #SBATCH -J KTacoTr
 #SBATCH -o ./out_files/KTacoTr.%j.out
-#SBATCH -p gpu-all
-#SBATCH -t 11-00:00:00
-#SBATCH --gres=gpu:4
+#SBATCH -p titanxp
+#SBATCH -t 02:00:00
+#SBATCH --gres=gpu:2
 
 echo "Start Training Korean Tacotron2"
 echo "SLURM_SUBMIT_DIR = $SLURM_SUBMIT_DIR"
