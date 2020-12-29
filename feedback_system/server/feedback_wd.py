@@ -32,8 +32,8 @@ class Handler(FileSystemEventHandler):
     def on_any_event(event):
         if event.event_type == 'created':
             print("New feedback file %s uploaded to feedback/server/feedback from COMPUTER!!!" % event.src_path)
-            #print(event.src_path[len(SOURCE) + 2 : len(SOURCE) + 10])
-            os.system('python3 check_feedback.py ' + event.src_path[len(SOURCE) + 2 : len(SOURCE) + 10] + ' ' + str(len(os.listdir('./sat_feedback'))+1))
+            #print(event.src_path[len(SOURCE) + 2 : len(SOURCE) + 21])
+            os.system('python3 check_feedback.py ' + event.src_path[len(SOURCE) + 2 : len(SOURCE) + 21])
 
 
 if __name__ == '__main__':

@@ -2,20 +2,21 @@ import os
 from watchdog.observers import Observer
 import time
 
-src = './score/'
-
+SOURCE = os.getcwd() + '/sat_feedback'
 
 class Watcher:
     def __init__(self):
      	self.observer = Observer()
 
     def run(self):
-        print('Score dir Watcher started running!')
+        print('sat_feedback dir watcher running!')
         try:
             while True:
-                if len(os.listdir(src)) >= 5:
-                    print("now we can add those data")
-                    os.system('python3 need_dataset.py')
+                print(SOURCE)
+                print(len(os.listdir(SOURCE)))
+                if len(os.listdir(SOURCE)) >= 5:
+                    print("enough satisfactory feedbacks accumulated")
+                    os.system('python3 add_to_dataset.py')
                     break
                 else:
                     time.sleep(5)
