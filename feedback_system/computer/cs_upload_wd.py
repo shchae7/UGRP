@@ -7,14 +7,14 @@ import os
 USERID = 'shchae7'
 
 SOURCE = os.getcwd() + '/upload'
-DEST = USERID + '@141.223.181.14:/home/' + USERID + '/UGRP/feedback_system/server/feedback'
+DEST = USERID + '@cse-cluster1.postech.ac.kr:/home/' + USERID + '/UGRP/feedback_system/server/feedback'
 
 class Watcher:
     def __init__(self):
         self.observer = Observer()
 
     def run(self):
-        print('CS upload dir Watcher started running!')
+        print('computer feedback upload dir watcher running')
         event_handler = Handler()
         self.observer.schedule(event_handler, SOURCE, recursive=True)
         self.observer.start()
@@ -33,8 +33,8 @@ class Handler(FileSystemEventHandler):
     @staticmethod
     def on_any_event(event):
         if event.event_type == 'created':
-            print("New file %s uploaded to SOURCE from APP!!!" % event.src_path)
-            os.system('rsync -avz --rsh=\'ssh -p 7777\' --password-file=rsync_pass ' + SOURCE + '/* ' + DEST)
+            print("New file %s uploaded to feedback/computer/upload from APP!!!" % event.src_path)
+            os.system('rsync -avz --rsh=\'ssh -p 7777\' ' + SOURCE + '/* ' + DEST)
 
 
 if __name__ == '__main__':
