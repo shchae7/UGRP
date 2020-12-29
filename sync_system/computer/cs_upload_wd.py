@@ -7,7 +7,7 @@ import os
 USERID = 'shchae7'
 
 SOURCE = os.getcwd() + '/upload'
-DEST = USERID + '@141.223.181.14:/home/' + USERID + '/UGRP/sync_system/server/user_text'
+DEST = USERID + '@cse-cluster1.postech.ac.kr:/home/' + USERID + '/UGRP/sync_system/server/user_text'
 
 class Watcher:
     def __init__(self):
@@ -34,7 +34,7 @@ class Handler(FileSystemEventHandler):
     def on_any_event(event):
         if event.event_type == 'created':
             print("New file %s uploaded to SOURCE from APP!!!" % event.src_path)
-            os.system('rsync -avz --rsh=\'ssh -p 7777\' --password-file=rsync_pass ' + SOURCE + '/* ' + DEST)
+            os.system('rsync -avz --rsh=\'ssh -p 7777\' ' + SOURCE + '/* ' + DEST)
 
 
 if __name__ == '__main__':
