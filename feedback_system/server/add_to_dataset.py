@@ -2,24 +2,15 @@ import os
 import shutil
 
 # moving wav files
-wsrc = './wav_source'
-wdest = './datasets/choi/audio'
+USERID = 'shchae7'
+SAT_FEEDBACK = '/home/' + USERID + '/UGRP/feedback_system/server/sat_feedback/'
+WAV_SOURCE = '/home/' + USERID + '/UGRP/sync_system/server/user_voice/'
+WAV_DEST = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/audio/'
 
-uw = os.listdir(wsrc)
+for filename in os.listdir(SAT_FEEDBACK):
+    print(filename)
+    shutil.copy(WAV_SOURCE + filename[:-4] + '.wav', WAV_DEST)
+    os.remove(SAT_FEEDBACK + filename)
 
-for w in uw:
-    shutil.move(os.path.join(wsrc, w), wdest)
-
-
-# writing sync
-tsrc = './user_text/'
-tdest = './datasets/choi-recognition-All.txt'
-for root, subdirs, files in os.walk(tsrc):
-    for file in files:
-        ut = open(tsrc + file, 'r')
-        print(tsrc+file)
-        texts =  ut.readlines()
-        dt = open(tdest, 'a')
-        dt.write('\n'.join(texts))
-        dt.close()
-
+# writing to dataset
+#TXT_SOURCE = '/home/' + USERID + '/UGRP/sync_system/server/user_text/'
