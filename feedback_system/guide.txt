@@ -1,0 +1,17 @@
+Hi, this is jeongwon.
+Let me give you the instruction of testing my feedback_system ver.1.
+
+step 0: Please make sure that "datasets/choi/audio" and "datasets/choi/choi-recognition-All.txt" is empty and there is no copy .txt file in "feedback"
+
+step 1: python feedback_import.py
+step 2: python monitor_score.py
+step 3: python /feedback/test.py
+
+step 4: Check out if the dialogs of LeBlanc, Senna and Ashe have been written on "datasets/choi/choi-recognition-All.txt"!
+
+
+plus: You can use "feedback/clear.sh" and "datasets/choi/audio/move_back.sh" for easy retry.
+
+
+If you have any good ideas to fix some possible bugs, please let me know.
+Thank you!

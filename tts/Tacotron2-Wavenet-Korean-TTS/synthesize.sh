@@ -2,8 +2,8 @@
 
 #SBATCH -J KTacoSyn
 #SBATCH -o ./out_files/KTacoSyn.%j.out
-#SBATCH -p gpu-all
-#SBATCH -t 1:00:00
+#SBATCH -p titanxp
+#SBATCH -t 00:10:00
 #SBATCH --gres=gpu:2
 
 echo "Start Synthesizing Wav File"
