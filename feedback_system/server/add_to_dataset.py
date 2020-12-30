@@ -2,24 +2,44 @@ import os
 import shutil
 
 # moving wav files
-wsrc = './wav_source'
-wdest = './datasets/choi/audio'
+USERID = 'shchae7'
+SAT_FEEDBACK = '/home/' + USERID + '/UGRP/feedback_system/server/sat_feedback/'
+WAV_SOURCE = '/home/' + USERID + '/UGRP/sync_system/server/user_voice/'
+WAV_DEST = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/audio/'
+REL_WAV_DEST = './datasets/son/audio/'
 
-uw = os.listdir(wsrc)
+# writing to dataset
+TXT_SOURCE = '/home/' + USERID + '/UGRP/sync_system/server/user_text/'
+TXT_DEST = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/son-recognition-All.json'
 
-for w in uw:
-    shutil.move(os.path.join(wsrc, w), wdest)
+for filename in os.listdir(SAT_FEEDBACK):
+    #print(filename)
+    shutil.copy(WAV_SOURCE + filename[:-4] + '.wav', WAV_DEST)
 
+    user_txt_file = open(TXT_SOURCE + filename, "r")
+    user_text = user_txt_file.readlines()
+    #print(user_text)
 
-# writing sync
-tsrc = './user_text/'
-tdest = './datasets/choi-recognition-All.txt'
-for root, subdirs, files in os.walk(tsrc):
-    for file in files:
-        ut = open(tsrc + file, 'r')
-        print(tsrc+file)
-        texts =  ut.readlines()
-        dt = open(tdest, 'a')
-        dt.write('\n'.join(texts))
-        dt.close()
+    ori_recog_file = open(TXT_DEST, "r")
+    ori_lines = ori_recog_file.readlines()
+    ori_recog_file.close()
+    #print(ori_lines)
 
+    del_line_recog_file = open(TXT_DEST, "w")
+    count = 0
+    for line in ori_lines:
+        if count == len(ori_lines) - 2:
+            del_line_recog_file.write(line.strip('\n') + ',\n')
+        else:
+            if line.strip('\n') != '}':
+                del_line_recog_file.write(line)
+        count = count + 1
+    del_line_recog_file.close()
+
+    recog_file = open(TXT_DEST, "a")
+    for line in user_text:
+        recog_file.write('    ' + '\"' + REL_WAV_DEST + filename[:-4] + '.wav\": ' + '\"' + line + '\"\n')
+    recog_file.write("}")
+    recog_file.close()
+
+    os.remove(SAT_FEEDBACK + filename)
