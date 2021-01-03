@@ -6,10 +6,9 @@ import os
 
 USERID = 'shchae7'
 
-HOME_DIR = os.getcwd()
-WATCH_DIR = HOME_DIR + '/upload'
+WATCH_DIR = './upload'
 SOURCE = USERID + '@cse-cluster1.postech.ac.kr:/home/' + USERID + '/UGRP/sync_system/server/user_voice/'
-DEST = HOME_DIR + '/download'
+DEST = './download'
 
 class Watcher:
     def __init__(self):
@@ -41,7 +40,7 @@ class Handler(FileSystemEventHandler):
 
             if txt_file_size < 50:
                 print('txt file size < 50')
-                time.sleep(100)
+                time.sleep(80)
             elif txt_file_size < 100:
                 print('txt file size < 100')
                 time.sleep(100)
@@ -52,7 +51,6 @@ class Handler(FileSystemEventHandler):
                 print('txt file size > 150')
                 time.sleep(100)
 
-            print('slept')
             os.system('rsync -chavzP -e "ssh -p 7777" ' + SOURCE + '/* ' + DEST)
 
 
