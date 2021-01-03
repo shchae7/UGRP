@@ -1,5 +1,6 @@
 import librosa.output
 import numpy as np
+import sys
 import matplotlib.pyplot as plt
 
 USERID = 'shchae7'
@@ -38,7 +39,7 @@ class AudioAugmentation:
 
 
 
-if __name__ = '__main__':
+if __name__ == '__main__':
     dr = sys.argv[1]
     augmenter = AudioAugmentation(sys.argv[1])
 

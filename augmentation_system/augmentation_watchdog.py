@@ -4,7 +4,7 @@ from watchdog.events import FileSystemEventHandler
 
 import os
 
-USERID = 'shchae7'
+USERID = 'lapis'
 
 SOURCE = os.getcwd() + '/data'
 
@@ -33,8 +33,8 @@ class Handler(FileSystemEventHandler):
     def on_any_event(event):
         if event.event_type == 'created':
             dr = event.src_path
-            print("New file %s uploaded to SOURCE from APP!!!" % dr)
-            os.system('python3 augmentation.py ' + dr + ' ' + dr[len(SOURCE)+1])
+            print("New file %s uploaded to SOURCE from APP!!!, which filenmae" % dr)
+            os.system('python3 augmentation.py ' + dr + ' ' + dr[len(SOURCE)+1:len(dr)-4])
 
 
 if __name__ == '__main__':
