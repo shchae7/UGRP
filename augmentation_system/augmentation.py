@@ -3,8 +3,12 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 
-USERID = 'shchae7'
-OUTDIR = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/audio/'
+USERID = 'lapis'
+WAV_DEST = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/audio/'
+REL_WAV_DEST = './datasets/son/audio/'
+WAV_SOURCE = '/home/' + USERID + '/UGRP/augmentation_system/data/'
+FB_SOURCE = '/home/' + USERID + '/UGRP/augmentation_system/feedback/'
+JSON = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/son-recognition-All.json'
 
 class AudioAugmentation:
     def __init__(self, file_path):
@@ -42,23 +46,49 @@ class AudioAugmentation:
 
 if __name__ == '__main__':
     dr = sys.argv[1]
-    augmenter = AudioAugmentation(sys.argv[1])
+    fn = sys.argv[2]
+    augmenter = AudioAugmentation(dr)
 
     # Adding noise to sound
     data_noise = augmenter.add_noise()
-
     # Shifting the sound
     data_roll = augmenter.shift()
-
     # Stretching the sound
     data_stretch = augmenter.stretch(0.8)
-
     # Changing the pith of the sound
     data_pitch_change = augmenter.change_pitch()
 
     # Write generated cat sounds
-    out_dir = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/audio/'
-    augmenter.write_audio_file(OUTDIR + sys.argv[2] + '_noise_added.wav', data_noise)
-    augmenter.write_audio_file(OUTDIR + sys.argv[2] + '_noise_shifted.wav', data_roll)
-    augmenter.write_audio_file(OUTDIR + sys.argv[2] + '_noise_stretched.wav', data_stretch)
-    augmenter.write_audio_file(OUTDIR + sys.argv[2] + '_noise_pitch_changed.wav', data_pitch_change)
+    augmenter.write_audio_file(WAV_DEST + fn + '_noise_added.wav', data_noise)
+    augmenter.write_audio_file(WAV_DEST + fn + '_noise_shifted.wav', data_roll)
+    augmenter.write_audio_file(WAV_DEST + fn + '_noise_stretched.wav', data_stretch)
+    augmenter.write_audio_file(WAV_DEST + fn + '_noise_pitch_changed.wav', data_pitch_change)
+
+    user_txt_file = open(FB_SOURCE + fn + ".txt", "r")
+    user_text = user_txt_file.readlines()
+    #print(user_text)
+
+    ori_recog_file = open(JSON, "r")
+    ori_lines = ori_recog_file.readlines()
+    ori_recog_file.close()
+    #print(ori_lines)
+
+    del_line_recog_file = open(JSON, "w")
+    count = 0
+    for line in ori_lines:
+        if count == len(ori_lines) - 2:
+            del_line_recog_file.write(line.strip('\n') + ',\n')
+        else:
+            if line.strip('\n') != '}':
+                del_line_recog_file.write(line)
+        count = count + 1
+    del_line_recog_file.close()
+
+    recog_file = open(JSON, "a")
+    for line in user_text:
+        recog_file.write('    ' + '\"' + REL_WAV_DEST + fn + '_noise_added.wav\": ' + '\"' + line + '\",\n')
+        recog_file.write('    ' + '\"' + REL_WAV_DEST + fn + '_noise_shifted.wav\": ' + '\"' + line + '\",\n')
+        recog_file.write('    ' + '\"' + REL_WAV_DEST + fn + '_noise_stretched.wav\": ' + '\"' + line + '\",\n')
+        recog_file.write('    ' + '\"' + REL_WAV_DEST + fn + '_noise_pitch_changed.wav\": ' + '\"' + line + '\"\n')
+    recog_file.write("}")
+    recog_file.close()
