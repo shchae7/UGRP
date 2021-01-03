@@ -4,6 +4,7 @@ import sys
 import matplotlib.pyplot as plt
 
 USERID = 'shchae7'
+OUTDIR = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/audio/'
 
 class AudioAugmentation:
     def __init__(self, file_path):
@@ -57,7 +58,7 @@ if __name__ == '__main__':
 
     # Write generated cat sounds
     out_dir = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/audio/'
-    augmenter.write_audio_file('./output/' + sys.argv[2] + '_noise_added.wav', data_noise)
-    augmenter.write_audio_file('./output/' + sys.argv[2] + '_noise_shifted.wav', data_roll)
-    augmenter.write_audio_file('./output/' + sys.argv[2] + '_noise_stretched.wav', data_stretch)
-    augmenter.write_audio_file('./output/' + sys.argv[2] + '_noise_pitch_changed.wav', data_pitch_change)
+    augmenter.write_audio_file(OUTDIR + sys.argv[2] + '_noise_added.wav', data_noise)
+    augmenter.write_audio_file(OUTDIR + sys.argv[2] + '_noise_shifted.wav', data_roll)
+    augmenter.write_audio_file(OUTDIR + sys.argv[2] + '_noise_stretched.wav', data_stretch)
+    augmenter.write_audio_file(OUTDIR + sys.argv[2] + '_noise_pitch_changed.wav', data_pitch_change)
