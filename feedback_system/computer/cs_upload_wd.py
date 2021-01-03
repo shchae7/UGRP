@@ -6,7 +6,7 @@ import os
 
 USERID = 'shchae7'
 
-SOURCE = os.getcwd() + '/upload'
+SOURCE = './upload'
 DEST = USERID + '@cse-cluster1.postech.ac.kr:/home/' + USERID + '/UGRP/feedback_system/server/feedback'
 
 class Watcher:
