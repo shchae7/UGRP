@@ -8,8 +8,9 @@ import os
 
 USERID = 'parksbn812'
 
-SOURCE = os.getcwd()
-DEST = USERID + '@141.223.181.14:/home/' + USERID + '/2020ugrp/all-team/feature-script/UGRP/script/server/script_wav'
+SOURCE = os.getcwd() + '/recorded'
+DEST = '../server/script_wav'
+#DEST = USERID + '@141.223.181.14:/home/' + USERID + '/2020ugrp/all-team/feature-script/UGRP/script/server/script_wav'
 
 class Watcher:
     def __init__(self):
@@ -36,7 +37,7 @@ class Handler(FileSystemEventHandler):
     def on_any_event(event):
         if event.event_type == 'created':
             print("New file %s uploaded to SOURCE from APP!!!" % event.src_path)
-            os.system('rsync -avz --rsh=\'ssh -p 7777\' --password-file=rsync_pass ' + SOURCE + '/* ' + DEST)
+            os.system('rsync -avz --rsh=\'ssh -p 7777\' ' + SOURCE + '/* ' + DEST)
 
 
 if __name__ == '__main__':
