@@ -27,7 +27,7 @@ def build_from_path(hparams, in_dir, out_dir, num_workers=1, tqdm=lambda x: x):
     futures = []
     index = 1
 
-    path = os.path.join(in_dir, 'moon-recognition-All.json')
+    path = os.path.join(in_dir, 'user-recognition-All.json')
     
     with open(path,encoding='utf-8') as f:
         content = f.read()
