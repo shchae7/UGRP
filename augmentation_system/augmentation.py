@@ -66,7 +66,7 @@ if __name__ == '__main__':
     augmenter.write_audio_file(WAV_DEST + fn + '_noise_stretched.wav', data_stretch)
     augmenter.write_audio_file(WAV_DEST + fn + '_noise_pitch_changed.wav', data_pitch_change)
 
-    user_txt_file = open(FB_SOURCE + fn + ".txt", "r")
+    user_txt_file = open(FB_SOURCE + fn, "r")
     user_text = user_txt_file.readlines()
     #print(user_text)
 
