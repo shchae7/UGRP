@@ -4,12 +4,12 @@ from watchdog.events import FileSystemEventHandler
 
 import os
 
-USERID = 'parksbn812'
+USERPATH = 'parksbn812/2020ugrp/all-team/feature-script'
 
-#SCRIPT_DIR = USERID + '@141.223.181.14:/home/' + USERID + '/2020ugrp/all-team/feature-script/UGRP/script/server'
+#SCRIPT_DIR = USERID + '@141.223.181.14:/home/' + USERPATH + '/UGRP/script/server'
 SCRIPT_DIR = '../server'
-SCRIPT_TXT_ALL = SCRIPT_DIR + '/script_txt/script_all.txt'
-SCRIPT_TXT_LINE = SCRIPT_DIR + '/script_txt/script_line'
+SCRIPT_TXT_ALL = SCRIPT_DIR + '/script_all.txt'
+SCRIPT_TXT_LINE = SCRIPT_DIR + '/script_line'
 DEST = './downloaded_script'
 
 with open(SCRIPT_TXT_ALL, 'r') as script_all:

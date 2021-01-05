@@ -6,11 +6,11 @@ from watchdog.events import FileSystemEventHandler
 
 import os
 
-USERID = 'parksbn812'
+USERPATH = 'parksbn812/2020ugrp/all-team/feature-script'
 
-SOURCE = os.getcwd() + '/recorded'
-DEST = '../server/script_wav'
-#DEST = USERID + '@141.223.181.14:/home/' + USERID + '/2020ugrp/all-team/feature-script/UGRP/script/server/script_wav'
+SOURCE = os.getcwd() + '/upload'
+DEST = '../../tts/Tacotron2-Wavenet-Korean-TTS/datasets/user/audio'
+#DEST = USERID + '@141.223.181.14:/home/' + USERPATH + '/UGRP/script/server/script_wav'
 
 class Watcher:
     def __init__(self):

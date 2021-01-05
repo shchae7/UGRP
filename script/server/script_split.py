@@ -1,8 +1,8 @@
 import os
 
 # split whole script in each line
-USERID = 'parksbn812'
-SCRIPT_SOURCE = '/home/' + USERID + '/2020ugrp/all-team/feature-script/UGRP/script/server/script_txt'
+USERPATH = 'parksbn812/2020ugrp/all-team/feature-script'
+SCRIPT_SOURCE = '/home/' + USERPATH + '/UGRP/script/server'
 SCRIPT_TXT_ALL = SCRIPT_SOURCE + '/script_all.txt'
 SCRIPT_TXT_LINE_DEST = SCRIPT_SOURCE + '/script_line'
 
