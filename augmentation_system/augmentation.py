@@ -2,13 +2,15 @@ import librosa.output
 import numpy as np
 import sys
 import matplotlib.pyplot as plt
+import os
 
-USERID = 'lapis'
-WAV_DEST = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/audio/'
+UGRP_PATH = os.getcwd()[:-20]
+
+WAV_DEST = UGRP_PATH + '/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/audio/'
 REL_WAV_DEST = './datasets/son/audio/'
-WAV_SOURCE = '/home/' + USERID + '/UGRP/augmentation_system/data/'
-FB_SOURCE = '/home/' + USERID + '/UGRP/augmentation_system/feedback/'
-JSON = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/son-recognition-All.json'
+WAV_SOURCE = os.getcwd() + '/data/'
+FB_SOURCE = os.getcwd() + '/feedback/'
+JSON = UGRP_PATH + '/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/son-recognition-All.json'
 
 class AudioAugmentation:
     def __init__(self, file_path):
@@ -64,7 +66,7 @@ if __name__ == '__main__':
     augmenter.write_audio_file(WAV_DEST + fn + '_noise_stretched.wav', data_stretch)
     augmenter.write_audio_file(WAV_DEST + fn + '_noise_pitch_changed.wav', data_pitch_change)
 
-    user_txt_file = open(FB_SOURCE + fn + ".txt", "r")
+    user_txt_file = open(FB_SOURCE + fn, "r")
     user_text = user_txt_file.readlines()
     #print(user_text)
 
