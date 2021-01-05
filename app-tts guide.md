@@ -3,14 +3,14 @@
 - computer에서 clone, server에서도 clone
 - computer에서 사용하는 모든 watchdog, server에서 사용하는 모든 watchdog에 USERID를 갱신해줘야 한다. 나 같은 경우 cse-cluster1이 아니라 cse-cluster0을 쓰기 때문에 주소도 다 바꿔줘야 한다
 - ssh  접속할 때 비밀번호를 입력하지 않도록 sync_system/computer/enable_passwordless_transfer.sh 파일을 실행해줘야 한다
-- 컴퓨터에서는 반드시 터미널로 깃배시를 사용해야 하며 rsync가 깔려 있어야 한다
+- 컴퓨터에서는 윈도우의 경우 반드시 터미널로 깃배시를 사용해야 하며 rsync가 깔려 있어야 한다
 - 이거말고도 생각나는대로 추가하겟음
 
 ### App - Client
 
 1. Build할 때 위에 씬 6개 선택
 2. client 실행
-3. IP 주소에 **172.30.1.40** 입력
+3. IP 주소에 자기 ipv4 주소 입력(ipconfig로 확인)
 
 ### App - Host
 
