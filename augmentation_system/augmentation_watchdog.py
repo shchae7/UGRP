@@ -34,7 +34,7 @@ class Handler(FileSystemEventHandler):
         if event.event_type == 'created':
             dr = event.src_path
             print("New file %s uploaded to SOURCE from APP!!!, which filenmae" % dr)
-            os.system('python3 augmentation.py ' + dr + ' ' + dr[len(SOURCE)+1:len(dr)-4])
+            os.system('python3 augmentation.py ' + dr + ' ' + dr[len(SOURCE)+1:len(SOURCE)+20])
 
 
 if __name__ == '__main__':
