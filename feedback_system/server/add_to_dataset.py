@@ -2,12 +2,12 @@ import os
 import shutil
 
 # moving wav files
-USERID = 'shchae7'
+USERID = 'lapis'
 SAT_FEEDBACK = '/home/' + USERID + '/UGRP/feedback_system/server/sat_feedback/'
 WAV_SOURCE = '/home/' + USERID + '/UGRP/sync_system/server/user_voice/'
 #WAV_DEST = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/audio/'
-WAV_DEST = '/home/' + USERID + '/augmentation_system/data/'
-FB_DEST = 'home/' + USERID + '/augmentation_system/feedback/'
+WAV_DEST = '/home/' + USERID + '/UGRP/augmentation_system/data/'
+FB_DEST = '/home/' + USERID + '/UGRP/augmentation_system/feedback/'
 REL_WAV_DEST = './datasets/son/audio/'
 
 # writing to dataset
@@ -17,7 +17,7 @@ TXT_DEST = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/
 for filename in os.listdir(SAT_FEEDBACK):
     #print(filename)
     shutil.copy(WAV_SOURCE + filename[:-4] + '.wav', WAV_DEST)
-    shutil.copy(TXT_SOURCE + filenmae[:-4] + '.txt', FB_DEST)
+    shutil.copy(TXT_SOURCE + filename[:-4] + '.txt', FB_DEST)
 
     # user_txt_file = open(TXT_SOURCE + filename, "r")
     # user_text = user_txt_file.readlines()
