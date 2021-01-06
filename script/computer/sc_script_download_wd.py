@@ -28,14 +28,10 @@ class Watcher:
             with open('./script_0000000.txt', 'r') as f_line:
                 fileline_str = f_line.readline()
                 fileline = int(fileline_str)
+                print("GOGO:", fileline)
             while True:
-                #print(len(os.listdir(SCRIPT_TXT_LINE)))
-                if len(os.listdir(SCRIPT_TXT_LINE)) >= fileline:
-                    print("all txt splited")
-                    os.system('rsync -chavzP -e \'ssh -p 7777\' --exclude="script_0000000.txt" '+ SCRIPT_TXT_LINE + '/* ' + DEST)
-                    break
-                else:
-                    time.sleep(5)
+                os.system('rsync -chavzP -e \'ssh -p 7777\' \'--exclude="script_0000000.txt"\' '+ SCRIPT_TXT_LINE + '/* ' + DEST)
+                break
         except:
             self.observer.stop()
             print("observer stopped")
