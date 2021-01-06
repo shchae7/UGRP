@@ -6,6 +6,7 @@ Dev Branch
 https://github.com/shchae7/UGRP/blob/docu/korean_tts_tf_env_setting_server_v0.md
 
 <실행 (start from UGRP dir)>
+시작 전 tts/Tacotron2-Wavenet-Korean-TTS/datasets/user/ 안에 audio 디렉터리를 만들어 주세요: mkdir audio
 
 step 1: run the watchdog
 ```
