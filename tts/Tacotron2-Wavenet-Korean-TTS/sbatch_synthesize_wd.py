@@ -3,18 +3,16 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import os
 import shutil
-
 import datetime
 
-USERID = 'shchae7'
-SOURCE = '/home/' + USERID + '/UGRP/sync_system/server/user_text/'
-SOURCE_LENGTH = len(SOURCE) + 1  # 1 when testing using mv command
-TEMP_DEST = '/home/' + USERID + '/UGRP/sync_system/server/raw_result/'
-REAL_DEST = '/home/' + USERID + '/UGRP/sync_system/server/user_voice/'
-FILE_NUM = 0 # Keep track of number of files in user_text dir --> for string indexing
+UGRP_PATH = os.getcwd()[:-33]
+SYNC_SYS_PATH = UGRP_PATH + '/sync_system/server'
 
-
-TACOTRON_HOME = '/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/'
+SOURCE = SYNC_SYS_PATH + '/user_text/'
+SOURCE_LENGTH = len(SOURCE) + 1
+TEMP_DEST = SYNC_SYS_PATH + '/raw_result/'
+REAL_DEST = SYNC_SYS_PATH + '/user_voice/'
+TACOTRON_HOME = UGRP_PATH + '/tts/Tacotron2-Wavenet-Korean-TTS/'
 
 class Watcher:
     def __init__(self):

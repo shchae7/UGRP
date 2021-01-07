@@ -5,12 +5,14 @@ import matplotlib.pyplot as plt
 import os
 
 UGRP_PATH = os.getcwd()[:-20]
+AUG_SYS_PATH = os.getcwd()
+DATASET_PATH = UGRP_PATH + '/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/'
 
-WAV_DEST = UGRP_PATH + '/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/audio/'
-REL_WAV_DEST = './datasets/son/audio/'
 WAV_SOURCE = os.getcwd() + '/data/'
+WAV_DEST = DATASET_PATH + 'audio/'
 FB_SOURCE = os.getcwd() + '/feedback/'
-JSON = UGRP_PATH + '/tts/Tacotron2-Wavenet-Korean-TTS/datasets/son/son-recognition-All.json'
+JSON_PATH = DATASET_PATH + 'son-recognition-All.json'
+REL_WAV_PATH = './datasets/son/audio/'
 
 class AudioAugmentation:
     def __init__(self, file_path):
@@ -70,12 +72,12 @@ if __name__ == '__main__':
     user_text = user_txt_file.readlines()
     #print(user_text)
 
-    ori_recog_file = open(JSON, "r")
+    ori_recog_file = open(JSON_PATH, "r")
     ori_lines = ori_recog_file.readlines()
     ori_recog_file.close()
     #print(ori_lines)
 
-    del_line_recog_file = open(JSON, "w")
+    del_line_recog_file = open(JSON_PATH, "w")
     count = 0
     for line in ori_lines:
         if count == len(ori_lines) - 2:
@@ -86,11 +88,11 @@ if __name__ == '__main__':
         count = count + 1
     del_line_recog_file.close()
 
-    recog_file = open(JSON, "a")
+    recog_file = open(JSON_PATH, "a")
     for line in user_text:
-        recog_file.write('    ' + '\"' + REL_WAV_DEST + fn + '_noise_added.wav\": ' + '\"' + line + '\",\n')
-        recog_file.write('    ' + '\"' + REL_WAV_DEST + fn + '_noise_shifted.wav\": ' + '\"' + line + '\",\n')
-        recog_file.write('    ' + '\"' + REL_WAV_DEST + fn + '_noise_stretched.wav\": ' + '\"' + line + '\",\n')
-        recog_file.write('    ' + '\"' + REL_WAV_DEST + fn + '_noise_pitch_changed.wav\": ' + '\"' + line + '\"\n')
+        recog_file.write('    ' + '\"' + REL_WAV_PATH + fn + '_noise_added.wav\": ' + '\"' + line + '\",\n')
+        recog_file.write('    ' + '\"' + REL_WAV_PATH + fn + '_noise_shifted.wav\": ' + '\"' + line + '\",\n')
+        recog_file.write('    ' + '\"' + REL_WAV_PATH + fn + '_noise_stretched.wav\": ' + '\"' + line + '\",\n')
+        recog_file.write('    ' + '\"' + REL_WAV_PATH + fn + '_noise_pitch_changed.wav\": ' + '\"' + line + '\"\n')
     recog_file.write("}")
     recog_file.close()

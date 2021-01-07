@@ -2,7 +2,6 @@ import time
 import os
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-
 import os
 
 SOURCE = os.getcwd() + '/feedback'
@@ -39,4 +38,3 @@ class Handler(FileSystemEventHandler):
 if __name__ == '__main__':
     w = Watcher()
     w.run()
-

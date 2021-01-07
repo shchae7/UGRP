@@ -10,7 +10,7 @@ class Watcher:
         self.observer = Observer()
 
     def run(self):
-        print('Augmentation upload dir Watcher started running!')
+        print('aug_sys/data dir watcher started running!')
         event_handler = Handler()
         self.observer.schedule(event_handler, SOURCE, recursive=True)
         self.observer.start()
@@ -30,7 +30,7 @@ class Handler(FileSystemEventHandler):
     def on_any_event(event):
         if event.event_type == 'created':
             dr = event.src_path
-            print("New file %s uploaded to SOURCE from APP!!!" % dr)
+            print("New file %s uploaded to aug_sys/data" % dr)
             os.system('python3 augmentation.py ' + dr + ' ' + dr[len(SOURCE)+1:len(SOURCE)+17] + 'txt')
 
 
