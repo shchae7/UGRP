@@ -25,7 +25,7 @@ class Watcher:
                 fileline = int(fileline_str)
                 print("GOGO:", fileline)
             while True:
-                os.system('rsync -chavzP -e \'ssh -p 7777\' \'--exclude="script_0000000.txt"\' '+ SCRIPT_TXT_LINE + '/* ' + DEST)
+                os.system('rsync -chavzP -e \'ssh -p 7777\' \'--exclude=\'script_0000000.txt\'\' '+ SCRIPT_TXT_LINE + '/* ' + DEST)
                 break
         except:
             self.observer.stop()

@@ -28,7 +28,7 @@ WAV_TAIL = '.wav'
 
 data = {}
 
-linenum = 0
+linenum = 1
 
 with open(TXT_SOURCE, 'r', encoding = 'utf8') as ScriptAll:
     for line in ScriptAll.readlines():
