@@ -48,7 +48,7 @@ class Watcher:
 
     def run3(self):
         while True:
-            time.sleep(45)
+            time.sleep(100)
             os.system('rsync -chavzP -e \'ssh -p 7777\' ' + SCRIPT_TXT_LINE + '/end_of_training.txt ' + DEST)
             break
 
