@@ -1,19 +1,10 @@
-srun -l /bin/hostname
-srun -l /bin/pwd
-srun -l /bin/date
-
 #some directory settings
 rm -rf datasets/user/audio
 rm -rf ../../script/server/script_line/end_of_training.txt
 mkdir datasets/user/audio
-#preprocess
-conda init bash
-source activate tf1-demo-env
 
 #python trigger_preprocess.py & sh datasets/user/mv_wav.sh
 python trigger_preprocess.py
-date
-conda deactivate
 
 #wait for preprocessing
 sleep 15 #15s

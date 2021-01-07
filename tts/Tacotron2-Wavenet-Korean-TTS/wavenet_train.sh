@@ -17,7 +17,7 @@ srun -l /bin/pwd
 srun -l /bin/date
 
 conda init bash
-source activate tf2-gpu-py36
+conda activate tf2-gpu-py36
 
 while getopts "u:" opt; do
   case $opt in
