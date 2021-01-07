@@ -3,6 +3,7 @@ Dev Branch
 # trigger_preprocess.py 실행에 관하여
 
 <환경>
+cse-cluster1에서 base 환경에 다음 문서의 가장 아래 text box에 있는 모듈들을 설치하면 정상적으로 실행됩니다.
 https://github.com/shchae7/UGRP/blob/docu/korean_tts_tf_env_setting_server_v0.md
 
 <실행 (start from UGRP dir)>
