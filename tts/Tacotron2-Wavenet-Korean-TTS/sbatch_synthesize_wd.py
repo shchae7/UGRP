@@ -86,7 +86,8 @@ class Handler(FileSystemEventHandler):
 
             for filename in os.listdir(TEMP_DEST):
                 print(filename)
-                shutil.move(TEMP_DEST + filename, REAL_DEST + source[:-4] + filename[-4:])
+                if filename[-3:] == 'wav':
+                    shutil.move(TEMP_DEST + filename, REAL_DEST + source[:-4] + filename[-4:])
                 
 
 if __name__ == '__main__':

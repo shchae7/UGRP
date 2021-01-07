@@ -17,7 +17,6 @@ class Watcher:
                 if len(os.listdir(SOURCE)) >= 5:
                     print("enough satisfactory feedbacks accumulated")
                     os.system('python3 add_to_dataset.py')
-                    break
                 else:
                     time.sleep(5)
         except:
