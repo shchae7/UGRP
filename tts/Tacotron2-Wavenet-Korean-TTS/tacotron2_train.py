@@ -247,7 +247,7 @@ def main():
  
     #parser.add_argument('--data_paths', default='D:\\hccho\\Tacotron-Wavenet-Vocoder-hccho\\data\\moon,D:\\hccho\\Tacotron-Wavenet-Vocoder-hccho\\data\\son')
     #parser.add_argument('--data_paths', default='D:\\hccho\\Tacotron-Wavenet-Vocoder-hccho\\data\\small1,D:\\hccho\\Tacotron-Wavenet-Vocoder-hccho\\data\\small2')
-    parser.add_argument('--data_paths', default='./data/son')    
+    parser.add_argument('--data_paths', type=str, default=None)
 
     
     parser.add_argument('--load_path', default=None)   # 아래의 'initialize_path'보다 우선 적용
