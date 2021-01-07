@@ -19,7 +19,25 @@ srun -l /bin/date
 conda init bash
 conda activate tf1-gpu-py36
 
-python tacotron2_train.py
+while getopts "u:" opt; do
+  case $opt in
+    u)
+      echo >&2 "-u was triggered!, OPTARG: $OPTARG"
+      if [ $OPTARG == "user" ]
+      then
+        python tacotron2_train.py --data_paths=./data/user
+        echo "USERRRRR"
+      fi
+      if [ $OPTARG == "son" ]
+      then
+        python tacotron2_train.py --data_paths=./data/son
+        echo "SONNNNNN"
+      fi
+      ;;
+  esac
+done
+
+# python tacotron2_train.py --data_path=./data/user
 
 date
 
