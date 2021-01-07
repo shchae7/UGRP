@@ -2,7 +2,7 @@
 
 #SBATCH -J KWaveTr
 #SBATCH -o ./out_files/KWaveTr.%j.out
-#SBATCH -p gpu-all
+#SBATCH -p titanxp
 #SBATCH -t 02:00:00
 #SBATCH --gres=gpu:2
 
@@ -17,9 +17,27 @@ srun -l /bin/pwd
 srun -l /bin/date
 
 conda init bash
-conda activate tf1-gpu-py36
+source activate tf2-gpu-py36
 
-python vocoder_train.py
+while getopts "u:" opt; do
+  case $opt in
+    u)
+      echo >&2 "-u was triggered!, OPTARG: $OPTARG"
+      if [ $OPTARG == "user" ]
+      then
+        python vocoder_train.py --data_dir=./data/user
+        echo "USERRRRR"
+      fi
+      if [ $OPTARG == "son" ]
+      then
+        python vocoder_train.py --data_dir=./data/son
+        echo "SONNNNNN"
+      fi
+      ;;
+  esac
+done
+
+#python vocoder_train.py
 
 date
 
