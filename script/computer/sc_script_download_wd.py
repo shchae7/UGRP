@@ -49,10 +49,12 @@ class Watcher:
             self.observer.stop()
             print("Observer Stopped!")
 
-            self.observer.join()
+        self.observer.join()
     def run3(self):
         while True:
+            time.sleep(45)
             os.system('rsync -chavzP -e \'ssh -p 7777\' ' + SCRIPT_TXT_LINE + '/end_of_training.txt ' + DEST)
+            break
 
 
 class Handler(FileSystemEventHandler):
@@ -66,5 +68,5 @@ class Handler(FileSystemEventHandler):
 if __name__ == '__main__':
     w = Watcher()
     w.run()
-    #w.run2()
     w.run3()
+
