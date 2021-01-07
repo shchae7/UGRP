@@ -3,15 +3,12 @@
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-
 import os
 
-USERPATH = 'parksbn812/2020ugrp/all-team/feature-script'
-USERID = 'parksbn812'
+USERID = 'shchae7'
 
-SOURCE = os.getcwd() + '/upload'
-# DEST = '../../tts/Tacotron2-Wavenet-Korean-TTS/datasets/user/audio'
-DEST = USERID + '@141.223.181.103:/home/' + USERPATH + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/user/audio'
+SOURCE = './upload'
+DEST = USERID + '@cse-cluster1.postech.ac.kr:/home/' + USERID + '/UGRP/tts/Tacotron2-Wavenet-Korean-TTS/datasets/user/audio'
 
 class Watcher:
     def __init__(self):
@@ -38,10 +35,7 @@ class Handler(FileSystemEventHandler):
     def on_any_event(event):
         if event.event_type == 'created':
             print("New file %s uploaded to SOURCE from APP!!!" % event.src_path)
-            # os.system('scp -r SOURCE DEST')
             os.system('rsync -chavzP -e \'ssh -p 7777\' ' + SOURCE + '/* ' + DEST)
-            print(SOURCE)
-            print(DEST)
 
 if __name__ == '__main__':
     w = Watcher()

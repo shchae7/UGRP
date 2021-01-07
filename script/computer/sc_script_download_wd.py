@@ -1,20 +1,15 @@
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-
 import os
 
-USERPATH = 'parksbn812/2020ugrp/all-team/feature-script'
-USERID = 'parksbn812'
+USERID = 'shchae7'
 
-SCRIPT_DIR = USERID + '@141.223.181.103:/home/' + USERPATH + '/UGRP/script/server'
-# SCRIPT_DIR = '../server'
+SCRIPT_DIR = USERID + '@cse-cluster1.postech.ac.kr:/home/' + USERID + '/UGRP/script/server'
 SCRIPT_TXT_ALL = SCRIPT_DIR + '/script_all.txt'
 SCRIPT_TXT_LINE = SCRIPT_DIR + '/script_line'
 DEST = './downloaded_script'
 
-#with open(SCRIPT_TXT_ALL, 'r') as script_all:
-#    fileline = len(script_all.readlines())
 fileline = 0
 
 class Watcher:
@@ -50,6 +45,7 @@ class Watcher:
             print("Observer Stopped!")
 
         self.observer.join()
+
     def run3(self):
         while True:
             time.sleep(45)
@@ -62,7 +58,6 @@ class Handler(FileSystemEventHandler):
     def on_any_event(event):
         if event.event_type == 'created':
             print("New file %s uploaded to SOURCE from APP!!!" % event.src_path)
-            # os.system('scp -r SOURCE DEST')
             os.system('rsync -chavzP -e \'ssh -p 7777\' ' + SCRIPT_TXT_LINE + '/end_of_training.txt ' + DEST)
 
 if __name__ == '__main__':
