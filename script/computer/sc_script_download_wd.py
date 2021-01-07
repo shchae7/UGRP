@@ -8,7 +8,9 @@ USERID = 'shchae7'
 SCRIPT_DIR = USERID + '@cse-cluster1.postech.ac.kr:/home/' + USERID + '/UGRP/script/server'
 SCRIPT_TXT_ALL = SCRIPT_DIR + '/script_all.txt'
 SCRIPT_TXT_LINE = SCRIPT_DIR + '/script_line'
+END_DIR = SCRIPT_DIR + '/end'
 DEST = './downloaded_script'
+END_DEST = '../../training_end'
 
 fileline = 0
 
@@ -49,7 +51,7 @@ class Watcher:
     def run3(self):
         while True:
             time.sleep(100)
-            os.system('rsync -chavzP -e \'ssh -p 7777\' ' + SCRIPT_TXT_LINE + '/end_of_training.txt ' + DEST)
+            os.system('rsync -chavzP -e \'ssh -p 7777\' ' + END_DIR + '/training.txt ' + END_DEST)
             break
 
 

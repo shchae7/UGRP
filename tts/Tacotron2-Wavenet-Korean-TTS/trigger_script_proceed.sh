@@ -17,6 +17,6 @@ python trigger_wave_train.py
 
 #alert its end
 sleep 15 #15s
-echo 'Hello, world.' >../../script/server/script_line/end_of_training.txt
+echo 'Hello, world.' >../../script/server/end/training.txt
 
 echo "##### END #####"
